@@ -158,6 +158,16 @@ nav.scrolled {
   overflow: hidden;
 }
 
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: heroZoom 14s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 .hero-bg {
   position: absolute;
   inset: 0;
