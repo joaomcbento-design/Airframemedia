@@ -267,10 +267,14 @@
       line-height: 1;
     }
 
+    /* Hero video — centred, 65% width */
     .tl-video-hero-wrap {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 1.2rem;
+      width: 65%;
+      margin: 0 auto;
     }
 
     .tl-video-grid {
@@ -285,6 +289,7 @@
       gap: 0.9rem;
     }
 
+    /* Shared video container */
     .tl-video-wrap {
       position: relative;
       width: 100%;
@@ -305,11 +310,19 @@
       display: block;
     }
 
+    /* Transparent overlay — blocks all clicks on the video */
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      cursor: default;
+    }
+
     .tl-video-caption {
       font-size: clamp(0.68rem, 0.75vw, 0.88rem);
       letter-spacing: 0.15em;
       color: var(--muted);
-      padding-left: 0.2rem;
+      text-align: center;
     }
 
     /* ── HOW IT WORKS ─────────────────────────────────────── */
@@ -464,18 +477,18 @@
       <h2 class="tl-videos-title">Veja por si mesmo</h2>
     </div>
 
-    <!-- Hero video -->
+    <!-- Hero video — downsized and centred -->
     <div class="tl-video-hero-wrap">
       <div class="tl-video-wrap">
         <iframe
-          src="https://www.youtube.com/embed/fXNOTMwMjWw?rel=0&modestbranding=1&disablekb=1"
+          src="https://www.youtube.com/embed/oidVVT6nlVA?rel=0&modestbranding=1&disablekb=1&autoplay=1&mute=1&loop=1&playlist=oidVVT6nlVA"
           title="AirFrame Media — Timelapse Showcase"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
+        <div class="video-overlay"></div>
       </div>
-      <p class="tl-video-caption">Timelapse completo — do estaleiro à entrega final</p>
+      <p class="tl-video-caption">Sistema Tikee — captação contínua, acesso remoto, qualidade 6K</p>
     </div>
 
     <!-- Feature videos -->
@@ -484,12 +497,12 @@
       <div class="tl-video-item">
         <div class="tl-video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/ixeBdvE7L0s?rel=0&modestbranding=1&disablekb=1"
+            src="https://www.youtube.com/embed/ixeBdvE7L0s?rel=0&modestbranding=1&disablekb=1&autoplay=1&mute=1&loop=1&playlist=ixeBdvE7L0s"
             title="AirFrame Media — Captação 6K"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
           </iframe>
+          <div class="video-overlay"></div>
         </div>
         <p class="tl-video-caption">Sistema de captação contínua 6K</p>
       </div>
@@ -497,12 +510,12 @@
       <div class="tl-video-item">
         <div class="tl-video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/X_OMRCT-T_Q?rel=0&modestbranding=1&disablekb=1"
-            title="AirFrame Media — Dashboard de Supervisão"
+            src="https://www.youtube.com/embed/X_OMRCT-T_Q?rel=0&modestbranding=1&disablekb=1&autoplay=1&mute=1&loop=1&playlist=X_OMRCT-T_Q"
+            title="AirFrame Media — Dashboard"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
           </iframe>
+          <div class="video-overlay"></div>
         </div>
         <p class="tl-video-caption">Dashboard de supervisão e controlo remoto</p>
       </div>
@@ -510,12 +523,12 @@
       <div class="tl-video-item">
         <div class="tl-video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/trpDZkFabqg?rel=0&modestbranding=1&disablekb=1"
+            src="https://www.youtube.com/embed/trpDZkFabqg?rel=0&modestbranding=1&disablekb=1&autoplay=1&mute=1&loop=1&playlist=trpDZkFabqg"
             title="AirFrame Media — Funcionalidades"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
           </iframe>
+          <div class="video-overlay"></div>
         </div>
         <p class="tl-video-caption">Funcionalidades avançadas de monitorização</p>
       </div>
