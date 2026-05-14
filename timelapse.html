@@ -249,6 +249,69 @@
       color: var(--muted);
     }
 
+    /* ── VIDEO SHOWCASE ───────────────────────────────────── */
+    .tl-videos {
+      padding: 8rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .tl-videos-head { margin-bottom: 1rem; }
+
+    .tl-videos-title {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .tl-video-hero-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .tl-video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .tl-video-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .tl-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .tl-video-wrap:hover { border-color: var(--gold); }
+
+    .tl-video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .tl-video-caption {
+      font-size: clamp(0.68rem, 0.75vw, 0.88rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      padding-left: 0.2rem;
+    }
+
     /* ── HOW IT WORKS ─────────────────────────────────────── */
     .tl-how {
       padding: 8rem 3.5rem;
@@ -391,6 +454,72 @@
           <path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/>
         </svg>
       </a>
+    </div>
+  </div>
+
+  <!-- ═══ VIDEO SHOWCASE ═══════════════════════════════════ -->
+  <div class="tl-videos reveal">
+    <div class="tl-videos-head">
+      <p class="section-label">Em acção</p>
+      <h2 class="tl-videos-title">Veja por si mesmo</h2>
+    </div>
+
+    <!-- Hero video -->
+    <div class="tl-video-hero-wrap">
+      <div class="tl-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/fXNOTMwMjWw?rel=0&modestbranding=1&disablekb=1"
+          title="AirFrame Media — Timelapse Showcase"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="tl-video-caption">Timelapse completo — do estaleiro à entrega final</p>
+    </div>
+
+    <!-- Feature videos -->
+    <div class="tl-video-grid">
+
+      <div class="tl-video-item">
+        <div class="tl-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/ixeBdvE7L0s?rel=0&modestbranding=1&disablekb=1"
+            title="AirFrame Media — Captação 6K"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="tl-video-caption">Sistema de captação contínua 6K</p>
+      </div>
+
+      <div class="tl-video-item">
+        <div class="tl-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/X_OMRCT-T_Q?rel=0&modestbranding=1&disablekb=1"
+            title="AirFrame Media — Dashboard de Supervisão"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="tl-video-caption">Dashboard de supervisão e controlo remoto</p>
+      </div>
+
+      <div class="tl-video-item">
+        <div class="tl-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/trpDZkFabqg?rel=0&modestbranding=1&disablekb=1"
+            title="AirFrame Media — Funcionalidades"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="tl-video-caption">Funcionalidades avançadas de monitorização</p>
+      </div>
+
     </div>
   </div>
 
