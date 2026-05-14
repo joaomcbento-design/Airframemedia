@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços — AirFrame Media</title>
+  <meta name="description" content="Drone, Timelapse, Fotografia e Vídeo nos Açores. Engineered Perspectives.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ── PAGE HEADER ──────────────────────────────────────── */
+    .page-header {
+      padding: 18rem 3.5rem 6rem;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 3.5rem; right: 3.5rem;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .page-header-label {
+      font-size: clamp(0.72rem, 0.75vw, 0.95rem);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .page-header-label::before {
+      content: '';
+      width: 1.8rem; height: 1px;
+      background: var(--gold);
+    }
+
+    .page-header h1 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 700;
+      line-height: 0.9;
+      opacity: 0;
+      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    }
+
+    /* ── SERVICE BLOCK ────────────────────────────────────── */
+    .service-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-block.reverse { direction: rtl; }
+    .service-block.reverse > * { direction: ltr; }
+
+    .service-img {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.75) saturate(0.85);
+      transform: scale(1.05);
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    }
+
+    .service-block:hover .service-img img {
+      transform: scale(1.1);
+      filter: brightness(0.65) saturate(0.75);
+    }
+
+    .service-num-overlay {
+      position: absolute;
+      top: 2.5rem; left: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(4rem, 8vw, 9rem);
+      font-weight: 300;
+      color: rgba(196, 162, 74, 0.15);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    /* ── SERVICE CONTENT ──────────────────────────────────── */
+    .service-content {
+      padding: 5rem 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      border-left: 1px solid var(--border);
+    }
+
+    .service-block.reverse .service-content {
+      border-left: none;
+      border-right: 1px solid var(--border);
+    }
+
+    .service-content-num {
+      font-size: clamp(0.6rem, 0.65vw, 0.8rem);
+      letter-spacing: 0.42em;
+      color: var(--gold);
+    }
+
+    .service-content h2 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(2rem, 4vw, 4.5rem);
+      font-weight: 700;
+      line-height: 0.95;
+    }
+
+    .service-content-desc {
+      font-size: clamp(0.9rem, 1.1vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(240, 237, 230, 0.75);
+      line-height: 1.8;
+      max-width: 45ch;
+    }
+
+    /* ── BULLET LIST ──────────────────────────────────────── */
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: clamp(0.82rem, 0.95vw, 1.1rem);
+      font-weight: 300;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+
+    .service-list li:hover { color: var(--white); }
+
+    .service-list li::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── TIMELAPSE CALLOUT ────────────────────────────────── */
+    .timelapse-callout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.8rem 2.2rem;
+      border: 1px solid rgba(196, 162, 74, 0.25);
+      background: rgba(196, 162, 74, 0.04);
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .timelapse-callout:hover {
+      border-color: var(--gold);
+      background: rgba(196, 162, 74, 0.08);
+    }
+
+    .timelapse-callout p {
+      font-size: clamp(0.8rem, 0.9vw, 1rem);
+      font-weight: 300;
+      color: rgba(240, 237, 230, 0.65);
+      line-height: 1.6;
+      max-width: 40ch;
+    }
+
+    .timelapse-callout p strong {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .callout-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: clamp(0.68rem, 0.75vw, 0.88rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: gap 0.3s;
+    }
+
+    .callout-link:hover { gap: 1rem; }
+
+    .callout-link svg { stroke: var(--gold); fill: none; }
+  </style>
+</head>
+<body>
+
+  <div class="grain"></div>
+  <div class="cursor-ring" id="cRing"></div>
+  <div class="cursor-dot"  id="cDot"></div>
+
+  <!-- ═══ NAV ══════════════════════════════════════════════ -->
+  <nav id="nav" class="scrolled">
+    <a href="index.html" class="nav-logo">AIR<em>FRAME</em> MEDIA</a>
+    <ul class="nav-links">
+      <li><a href="servicos.html" class="cta-link">Serviços</a></li>
+      <li><a href="portfolio.html">Portfólio</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ══════════════════════════════════════ -->
+  <div class="page-header">
+    <p class="page-header-label">O que fazemos</p>
+    <h1>Serviços</h1>
+  </div>
+
+  <!-- ═══ 01 DRONE ═════════════════════════════════════════ -->
+  <div class="service-block reveal">
+    <div class="service-img">
+      <img src="assets/drone.jpg" alt="Drone — AirFrame Media">
+      <span class="service-num-overlay">01</span>
+    </div>
+    <div class="service-content">
+      <span class="service-content-num">01</span>
+      <h2>Drone</h2>
+      <p class="service-content-desc">
+        Certificado, seguro, experiente. Desde a cinematografia de um drone tradicional, ao dinamismo de um FPV (First Person View) no ar — estamos em casa.
+      </p>
+      <ul class="service-list">
+        <li>Fotografia ou vídeo</li>
+        <li>Mapeamento</li>
+        <li>Inspecção de áreas de difícil acesso</li>
+        <li>Cobertura de eventos (FPV)</li>
+        <li>Imobiliário</li>
+        <li>Entre tantos outros usos</li>
+      </ul>
+      <a href="contacto.html" class="btn btn-outline" style="align-self: flex-start; margin-top: 0.5rem;">
+        Pedir Orçamento
+        <svg width="11" height="11" viewBox="0 0 11 11" stroke="currentColor" stroke-width="1.6" fill="none">
+          <path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ 02 TIMELAPSE ══════════════════════════════════════ -->
+  <div class="service-block reverse reveal">
+    <div class="service-img">
+      <img src="assets/timelapse.jpg" alt="Timelapse — AirFrame Media">
+      <span class="service-num-overlay">02</span>
+    </div>
+    <div class="service-content">
+      <span class="service-content-num">02</span>
+      <h2>Timelapse</h2>
+      <p class="service-content-desc">
+        Acompanhamento de obras, projectos de construção e arquitectura. Acesso remoto para si e para os seus clientes, com inúmeras ferramentas de supervisão, controlo e segurança. Visualize anos, em segundos.
+      </p>
+      <div class="timelapse-callout">
+        <p>
+          <strong>O único serviço deste tipo em São Miguel.</strong><br>
+          Câmara 6K com acesso remoto, dashboard de supervisão, arquivo de imagens, mapas de calor e muito mais.
+        </p>
+        <a href="timelapse.html" class="callout-link">
+          Saber mais
+          <svg width="12" height="12" viewBox="0 0 12 12" stroke-width="1.5">
+            <path d="M2 6h8M6 2l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+      <a href="contacto.html" class="btn btn-outline" style="align-self: flex-start; margin-top: 0.5rem;">
+        Pedir Orçamento
+        <svg width="11" height="11" viewBox="0 0 11 11" stroke="currentColor" stroke-width="1.6" fill="none">
+          <path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ 03 FOTOGRAFIA ════════════════════════════════════ -->
+  <div class="service-block reveal">
+    <div class="service-img">
+      <img src="assets/fotografia.jpg" alt="Fotografia — AirFrame Media">
+      <span class="service-num-overlay">03</span>
+    </div>
+    <div class="service-content">
+      <span class="service-content-num">03</span>
+      <h2>Fotografia</h2>
+      <p class="service-content-desc">
+        Real estate, arquitectura, corporate, eventos. Ajudamo-lo, à sua marca, a registar os momentos que mais importam, e a projectar qualidade na sua comunicação.
+      </p>
+      <ul class="service-list">
+        <li>Cobertura de eventos</li>
+        <li>Promoção de produto ou marca</li>
+        <li>Imóveis para o mercado</li>
+        <li>Promoção turística</li>
+        <li>Conteúdos para redes sociais</li>
+      </ul>
+      <a href="contacto.html" class="btn btn-outline" style="align-self: flex-start; margin-top: 0.5rem;">
+        Pedir Orçamento
+        <svg width="11" height="11" viewBox="0 0 11 11" stroke="currentColor" stroke-width="1.6" fill="none">
+          <path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ 04 VÍDEO ══════════════════════════════════════════ -->
+  <div class="service-block reverse reveal">
+    <div class="service-img">
+      <img src="assets/video.jpg" alt="Vídeo — AirFrame Media">
+      <span class="service-num-overlay">04</span>
+    </div>
+    <div class="service-content">
+      <span class="service-content-num">04</span>
+      <h2>Vídeo</h2>
+      <p class="service-content-desc">
+        Produção de vídeo corporativo, documental e promocional. Storytelling técnico com execução cinematográfica. Vamos criar a história que quer ver contada.
+      </p>
+      <ul class="service-list">
+        <li>Desde a captação até à entrega final</li>
+        <li>Edição e pós-produção completa</li>
+        <li>Controlamos todo o processo</li>
+        <li>Concentre-se apenas no resultado</li>
+      </ul>
+      <a href="contacto.html" class="btn btn-outline" style="align-self: flex-start; margin-top: 0.5rem;">
+        Pedir Orçamento
+        <svg width="11" height="11" viewBox="0 0 11 11" stroke="currentColor" stroke-width="1.6" fill="none">
+          <path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand">AIR<em>FRAME</em> MEDIA</div>
+    <span class="footer-motto">Engineered Perspectives</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/airframemedia" target="_blank">Instagram</a>
+      <a href="#">Privacidade</a>
+      <a href="#">Cookies</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>
