@@ -302,11 +302,13 @@
 
     .tl-video-wrap:hover { border-color: var(--gold); }
 
+    /* Scale iframe beyond container to crop YouTube title + logo */
     .tl-video-wrap iframe {
       position: absolute;
-      inset: 0;
+      top: -8%;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: 116%;
       display: block;
     }
 
@@ -488,7 +490,7 @@
         </iframe>
         <div class="video-overlay"></div>
       </div>
-      <p class="tl-video-caption">Sistema Tikee — captação contínua, acesso remoto, qualidade 6K</p>
+      <p class="tl-video-caption">Captação contínua 24/7 — supervisão remota, arquivo completo, qualidade 6K</p>
     </div>
 
     <!-- Feature videos -->
@@ -497,7 +499,7 @@
       <div class="tl-video-item">
         <div class="tl-video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/ixeBdvE7L0s?rel=0&modestbranding=1&disablekb=1&autoplay=1&mute=1&loop=1&playlist=ixeBdvE7L0s"
+            src="https://www.youtube.com/embed/HQbxSiApCig?rel=0&modestbranding=1&disablekb=1&autoplay=1&mute=1&loop=1&playlist=HQbxSiApCig"
             title="AirFrame Media — Captação 6K"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
