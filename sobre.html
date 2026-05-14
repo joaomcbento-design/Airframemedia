@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre — AirFrame Media</title>
+  <meta name="description" content="Entre cockpits e câmaras. A história por detrás da AirFrame Media.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ── PAGE HEADER ──────────────────────────────────────── */
+    .page-header {
+      padding: 18rem 3.5rem 6rem;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 3.5rem; right: 3.5rem;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .page-header-label {
+      font-size: clamp(0.72rem, 0.75vw, 0.95rem);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .page-header-label::before {
+      content: '';
+      width: 1.8rem; height: 1px;
+      background: var(--gold);
+    }
+
+    .page-header h1 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 700;
+      line-height: 0.9;
+      opacity: 0;
+      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    }
+
+    /* ── BIO SPLIT ────────────────────────────────────────── */
+    .bio-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      min-height: 90vh;
+    }
+
+    /* Photo column */
+    .bio-photo {
+      position: relative;
+      overflow: hidden;
+      background: #0A0A0F;
+    }
+
+    .bio-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: brightness(0.9) contrast(1.05);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bio-photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .bio-photo-caption {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(0.6rem, 0.7vw, 0.8rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 230, 0.5);
+    }
+
+    .bio-photo-caption em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* Text column */
+    .bio-text {
+      padding: 7rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.5rem;
+      border-left: 1px solid var(--border);
+    }
+
+    .bio-text p {
+      font-size: clamp(1rem, 1.3vw, 1.5rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(240, 237, 230, 0.85);
+    }
+
+    .bio-text p strong {
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .bio-cta-line {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+
+    .bio-signature {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .bio-signature-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 2vw, 2.4rem);
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    .bio-signature-role {
+      font-size: clamp(0.6rem, 0.7vw, 0.8rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── PILLARS ──────────────────────────────────────────── */
+    .pillars-section {
+      padding: 8rem 3.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .pillars-head {
+      margin-bottom: 5rem;
+    }
+
+    .pillars-head h2 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      max-width: 16ch;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .pillar {
+      background: var(--surface);
+      padding: 3rem;
+      transition: background 0.3s;
+    }
+
+    .pillar:hover { background: #10101A; }
+
+    .pillar-num {
+      font-size: clamp(0.6rem, 0.65vw, 0.8rem);
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .pillar h3 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .pillar p {
+      font-size: clamp(0.85rem, 0.95vw, 1.1rem);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── QUOTE ────────────────────────────────────────────── */
+    .about-quote {
+      padding: 10rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-quote::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .about-quote blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 5.5rem);
+      line-height: 1.2;
+      color: var(--white);
+      max-width: 20ch;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .about-quote cite {
+      display: block;
+      margin-top: 2rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: normal;
+      font-size: clamp(0.65rem, 0.75vw, 0.9rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── CTA ──────────────────────────────────────────────── */
+    .about-cta {
+      padding: 8rem 3.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .about-cta h2 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      max-width: 16ch;
+    }
+
+    .about-cta h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Grain overlay -->
+  <div class="grain"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-ring" id="cRing"></div>
+  <div class="cursor-dot"  id="cDot"></div>
+
+  <!-- ═══ NAVIGATION ══════════════════════════════════════ -->
+  <nav id="nav" class="scrolled">
+    <a href="index.html" class="nav-logo">AIR<em>FRAME</em> MEDIA</a>
+    <ul class="nav-links">
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="portfolio.html">Portfólio</a></li>
+      <li><a href="sobre.html" class="cta-link">Sobre</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ PAGE HEADER ══════════════════════════════════════ -->
+  <div class="page-header">
+    <p class="page-header-label">A história</p>
+    <h1>Sobre</h1>
+  </div>
+
+  <!-- ═══ BIO SPLIT ════════════════════════════════════════ -->
+  <div class="bio-wrap">
+
+    <!-- Photo -->
+    <div class="bio-photo reveal">
+      <img src="assets/joao.jpg" alt="João Bento — AirFrame Media">
+      <div class="bio-photo-caption">João Bento &nbsp;·&nbsp; <em>Founder</em></div>
+    </div>
+
+    <!-- Text -->
+    <div class="bio-text reveal" style="transition-delay: 0.15s">
+
+      <p>
+        Cresci como profissional, <strong>entre cockpits e câmaras.</strong>
+        A mesma paixão que me leva a 25.000 pés, também me move a captar
+        o mundo de ângulos que poucos conhecem.
+      </p>
+
+      <p>
+        Cada frame é uma jornada, cada projecto uma nova altitude.
+        <strong>Meticulosamente planeados.</strong>
+      </p>
+
+      <p>
+        A AirFrame Media nasce como corolário de uma vontade grande
+        de ajudar pessoas e marcas a serem vistas,
+        <strong>exactamente como idealizaram.</strong>
+      </p>
+
+      <p class="bio-cta-line">Vamos ao briefing?</p>
+
+      <div class="bio-signature">
+        <span class="bio-signature-name">João Bento</span>
+        <span class="bio-signature-role">Founder · AirFrame Media</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ PILLARS ══════════════════════════════════════════ -->
+  <div class="pillars-section">
+    <div class="pillars-head reveal">
+      <p class="section-label">O que nos move</p>
+      <h2 class="services-title">A nossa<br>abordagem</h2>
+    </div>
+
+    <div class="pillars-grid reveal" style="transition-delay: 0.15s">
+
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <h3>Planeamento<br>Rigoroso</h3>
+        <p>Cada projecto é estudado antes de qualquer câmara ser ligada. Locais, luz, logística — nada é deixado ao acaso.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <h3>Execução<br>Técnica</h3>
+        <p>Formação aeronáutica aplicada à imagem. A disciplina do cockpit traduzida em precisão visual — frame a frame.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <h3>Entrega<br>Pontual</h3>
+        <p>Prazos são compromissos. Entregamos o que prometemos, quando prometemos, com a qualidade que define a nossa marca.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ QUOTE ═════════════════════════════════════════════ -->
+  <div class="about-quote reveal">
+    <blockquote>
+      "Proper Planning Prevents Poor Performance"
+    </blockquote>
+    <cite>— (Wise) Unknown Author</cite>
+  </div>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════ -->
+  <div class="about-cta reveal">
+    <h2>Pronto para o seu próximo <em>projecto?</em></h2>
+    <a href="contacto.html" class="btn btn-fill" style="font-size: clamp(0.85rem, 0.9vw, 1.1rem); padding: 1.1rem 2.8rem;">
+      Vamos Conversar
+      <svg width="11" height="11" viewBox="0 0 11 11" stroke="currentColor" stroke-width="1.6" fill="none">
+        <path d="M1 5.5h9M5.5 1l4.5 4.5-4.5 4.5"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand">AIR<em>FRAME</em> MEDIA</div>
+    <span class="footer-motto">Engineered Perspectives</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/airframemedia" target="_blank">Instagram</a>
+      <a href="#">Privacidade</a>
+      <a href="#">Cookies</a>
+    </div>
+  </footer>
+
+  <!-- Shared scripts -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
