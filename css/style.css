@@ -889,5 +889,5 @@ footer {
   .portfolio-cta { padding: 4rem 1.5rem; flex-direction: column; }
 
   /* ── HERO TITLE SIZE FIX ────────────────────────────────── */
-  .hero-title { font-size: clamp(2.5rem, 17vw, 11rem); }
+  .hero-title { font-size: 11vw !important; }
 }
