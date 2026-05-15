@@ -245,7 +245,16 @@ nav.scrolled {
 }
 .hero-title-line:nth-child(2) span {
   animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.72s forwards;
-  color: var(--gold);
+}
+
+.hero-media {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: 0.42em;
+  letter-spacing: 0.2em;
+  color: rgba(240, 237, 230, 0.6);
+  display: block;
+  margin-top: 0.2em;
 }
 
 .hero-tagline {
