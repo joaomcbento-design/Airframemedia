@@ -82,3 +82,25 @@ if (heroBg) {
     }
   }, { passive: true });
 }
+
+
+// ── MOBILE HAMBURGER NAV ─────────────────────────────────────
+const hamburger = document.getElementById('navHamburger');
+const navLinks  = document.querySelector('.nav-links');
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+
+  // Close when a link is tapped
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
