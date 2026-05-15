@@ -582,6 +582,53 @@ nav.scrolled {
   color: var(--muted);
 }
 
+/* ── CLIENTS MARQUEE ────────────────────────────────────── */
+.clients-section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.clients-label {
+  font-size: clamp(0.6rem, 0.7vw, 0.8rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.clients-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.clients-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 5rem;
+  animation: clientsScroll 50s linear infinite;
+}
+
+.clients-track img {
+  height: 36px;
+  width: auto;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+  display: block;
+}
+
+.clients-track img:hover { opacity: 0.9; }
+
+@keyframes clientsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* ── CTA ────────────────────────────────────────────────── */
 .cta-section {
   padding: 8rem 3.5rem;
