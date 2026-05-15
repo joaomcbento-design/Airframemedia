@@ -151,6 +151,10 @@
       padding-bottom: 1.5rem;
     }
 
+    .portfolio-video-solo {
+      width: 65%;
+    }
+
     .portfolio-video-pair {
       display: flex;
       gap: 3px;
@@ -377,7 +381,22 @@
     <p class="page-header-count"><span>25</span> obras seleccionadas</p>
   </div>
 
-  <!-- ═══ MASONRY GRID ══════════════════════════════════════ -->
+  <!-- ═══ CONTENT ════════════════════════════════════════════ -->
+
+  <!-- Hero video — top of page, centered, with sound -->
+  <div class="portfolio-video-row" style="padding-top: 1.5rem;">
+    <div class="portfolio-video-solo">
+      <div class="portfolio-video-wrap">
+        <iframe id="vid1" src="https://www.youtube.com/embed/cPRQYKli5_0?autoplay=1&mute=1&loop=1&playlist=cPRQYKli5_0&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <div class="video-block-overlay"></div>
+      </div>
+    </div>
+    <button class="mute-btn" onclick="toggleMute(this)">
+      <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      <svg class="icon-sound" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+      <span>Som</span>
+    </button>
+  </div>
 
   <!-- Photo group 1 -->
   <div class="portfolio-grid">
@@ -418,15 +437,11 @@
     </div>
   </div>
 
-  <!-- Video break 1 -->
+  <!-- Motorcycle video — centered, with sound -->
   <div class="portfolio-video-row">
-    <div class="portfolio-video-pair">
+    <div class="portfolio-video-solo">
       <div class="portfolio-video-wrap">
-        <iframe id="vid1" src="https://www.youtube.com/embed/cPRQYKli5_0?autoplay=1&mute=1&loop=1&playlist=cPRQYKli5_0&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-        <div class="video-block-overlay"></div>
-      </div>
-      <div class="portfolio-video-wrap">
-        <iframe id="vid2" src="https://www.youtube.com/embed/AOnEXqkD0AI?autoplay=1&mute=1&loop=1&playlist=AOnEXqkD0AI&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <iframe id="vid2" src="https://www.youtube.com/embed/bvFvyeoT_Ko?autoplay=1&mute=1&loop=1&playlist=bvFvyeoT_Ko&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         <div class="video-block-overlay"></div>
       </div>
     </div>
@@ -476,84 +491,84 @@
     </div>
   </div>
 
-  <!-- Video break 2 -->
+  <!-- Nature pair — side by side, no sound control -->
   <div class="portfolio-video-row">
     <div class="portfolio-video-pair">
       <div class="portfolio-video-wrap">
-        <iframe id="vid3" src="https://www.youtube.com/embed/hxZYyA9-07I?autoplay=1&mute=1&loop=1&playlist=hxZYyA9-07I&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <iframe id="vid3" src="https://www.youtube.com/embed/6uSS3J1uZs4?autoplay=1&mute=1&loop=1&playlist=6uSS3J1uZs4&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         <div class="video-block-overlay"></div>
       </div>
       <div class="portfolio-video-wrap">
-        <iframe id="vid4" src="https://www.youtube.com/embed/Vfj-_zaPU4U?autoplay=1&mute=1&loop=1&playlist=Vfj-_zaPU4U&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <iframe id="vid4" src="https://www.youtube.com/embed/Vfj-_zaPU4U?autoplay=1&mute=1&loop=1&playlist=Vfj-_zaPU4U&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         <div class="video-block-overlay"></div>
       </div>
     </div>
-    <button class="mute-btn" onclick="toggleMute(this)">
-      <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-      <svg class="icon-sound" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
-      <span>Som</span>
-    </button>
+  </div>
+
+  <!-- Timelapse — centered, no sound control -->
+  <div class="portfolio-video-row" style="padding-bottom: 1.5rem;">
+    <div class="portfolio-video-solo">
+      <div class="portfolio-video-wrap">
+        <iframe id="vid5" src="https://www.youtube.com/embed/AOnEXqkD0AI?autoplay=1&mute=1&loop=1&playlist=AOnEXqkD0AI&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <div class="video-block-overlay"></div>
+      </div>
+    </div>
   </div>
 
   <!-- Photo group 3 -->
   <div class="portfolio-grid">
-    <div class="portfolio-item" data-index="15" data-type="photo">
+    <div class="portfolio-item" data-index="14" data-type="photo">
       <img src="assets/portfolio/p14-hammock.jpg" alt="Fotografia — paisagem rural Açoriana">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="16" data-type="photo">
+    <div class="portfolio-item" data-index="15" data-type="photo">
       <img src="assets/portfolio/p08-construction.jpg" alt="Timelapse — obra em Ponta Delgada">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="17" data-type="photo">
+    <div class="portfolio-item" data-index="16" data-type="photo">
       <img src="assets/portfolio/p18-construction2.jpg" alt="Timelapse — vista aérea de obra">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="18" data-type="photo">
+    <div class="portfolio-item" data-index="17" data-type="photo">
       <img src="assets/portfolio/p19-hotel-detail.jpg" alt="Fotografia — detalhe hoteleiro">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="19" data-type="photo">
+    <div class="portfolio-item" data-index="18" data-type="photo">
       <img src="assets/portfolio/p20-mountain-reflection.jpg" alt="Fotografia — reflexo nas montanhas">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="20" data-type="photo">
+    <div class="portfolio-item" data-index="19" data-type="photo">
       <img src="assets/portfolio/p21-takeoff-sunset.jpg" alt="Fotografia — descolagem ao pôr do sol">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="21" data-type="photo">
+    <div class="portfolio-item" data-index="20" data-type="photo">
       <img src="assets/portfolio/p22-q400-detail.jpg" alt="Fotografia — detalhe Q400 SATA">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="22" data-type="photo">
+    <div class="portfolio-item" data-index="21" data-type="photo">
       <img src="assets/portfolio/p23-cockpit.jpg" alt="Fotografia — instrumentos de cockpit">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-    <div class="portfolio-item" data-index="23" data-type="photo">
+    <div class="portfolio-item" data-index="22" data-type="photo">
       <img src="assets/portfolio/p24-cabin.jpg" alt="Fotografia — cabine de aeronave">
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
   </div>
 
-
-  <!-- Video break 3 -->
-  <div class="portfolio-video-row">
-    <div class="portfolio-video-pair">
+  <!-- Car video — centered, with sound -->
+  <div class="portfolio-video-row" style="padding-bottom: 1.5rem;">
+    <div class="portfolio-video-solo">
       <div class="portfolio-video-wrap">
-        <iframe id="vid5" src="https://www.youtube.com/embed/bvFvyeoT_Ko?autoplay=1&mute=1&loop=1&playlist=bvFvyeoT_Ko&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-        <div class="video-block-overlay"></div>
-      </div>
-      <div class="portfolio-video-wrap">
-        <iframe id="vid6" src="https://www.youtube.com/embed/6uSS3J1uZs4?autoplay=1&mute=1&loop=1&playlist=6uSS3J1uZs4&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <iframe id="vid6" src="https://www.youtube.com/embed/hxZYyA9-07I?autoplay=1&mute=1&loop=1&playlist=hxZYyA9-07I&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         <div class="video-block-overlay"></div>
       </div>
     </div>
@@ -613,7 +628,7 @@
     document.head.appendChild(tag);
 
     function onYouTubeIframeAPIReady() {
-      ['vid1','vid2','vid3','vid4','vid5','vid6'].forEach(function(id) {
+      ['vid1','vid2','vid6'].forEach(function(id) {
         var el = document.getElementById(id);
         if (!el) return;
         players[id] = new YT.Player(id, {
