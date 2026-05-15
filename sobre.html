@@ -275,6 +275,17 @@
       font-style: normal;
       color: var(--gold);
     }
+
+  @media (max-width: 768px) {
+    .bio-wrap { grid-template-columns: 1fr !important; }
+    .bio-photo { min-height: 280px; aspect-ratio: 4/3; }
+    .bio-text  { padding: 2.5rem 1.5rem; gap: 1.5rem; }
+    .pillars-grid { grid-template-columns: 1fr !important; }
+    .pillars-section { padding: 4rem 1.5rem; }
+    .about-quote { padding: 5rem 1.5rem; }
+    .about-quote blockquote { font-size: clamp(1.5rem, 8vw, 5.5rem); max-width: 100%; }
+    .about-cta { padding: 4rem 1.5rem; flex-direction: column; }
+  }
   </style>
 </head>
 <body>

@@ -90,17 +90,24 @@ const navLinks  = document.querySelector('.nav-links');
 
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
+    const isOpen = hamburger.classList.toggle('open');
     navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    // Remove backdrop-filter when menu opens — it creates a containing
+    // block that traps position:fixed children inside the nav bounds
+    nav.style.backdropFilter        = isOpen ? 'none' : '';
+    nav.style.webkitBackdropFilter  = isOpen ? 'none' : '';
+    nav.style.background            = isOpen ? 'rgba(6,6,10,0.97)' : '';
   });
 
-  // Close when a link is tapped
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
       navLinks.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.style.overflow  = '';
+      nav.style.backdropFilter       = '';
+      nav.style.webkitBackdropFilter = '';
+      nav.style.background           = '';
     });
   });
 }

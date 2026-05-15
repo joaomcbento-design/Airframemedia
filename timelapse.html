@@ -416,6 +416,17 @@
       max-width: 45ch;
       position: relative;
     }
+
+  @media (max-width: 768px) {
+    .tl-hero-content { padding: 0 1.5rem; }
+    .tl-intro { grid-template-columns: 1fr !important; gap: 2rem; padding: 4rem 1.5rem; }
+    .tl-specs { grid-template-columns: repeat(2, 1fr) !important; }
+    .tl-features-grid { grid-template-columns: 1fr !important; }
+    .tl-steps { grid-template-columns: 1fr !important; gap: 2rem; }
+    .tl-video-hero-wrap { width: 100% !important; }
+    .tl-video-grid { grid-template-columns: 1fr !important; }
+    .tl-features, .tl-how, .tl-cta, .tl-videos { padding: 4rem 1.5rem; }
+  }
   </style>
 </head>
 <body>

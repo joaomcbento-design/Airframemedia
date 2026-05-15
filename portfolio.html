@@ -388,6 +388,15 @@
     }
 
     .portfolio-cta h2 em { font-style: normal; color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .portfolio-grid { columns: 2 !important; column-gap: 2px; padding: 2px; }
+    .portfolio-video-pair { flex-direction: column !important; width: 100% !important; }
+    .portfolio-video-solo { width: 100% !important; }
+    .filter-bar { padding: 1.5rem 1rem; }
+    .filter-btn { padding: 0.6rem 1rem; font-size: 0.7rem; }
+    .portfolio-cta { padding: 4rem 1.5rem; flex-direction: column; }
+  }
   </style>
 </head>
 <body>

@@ -252,6 +252,14 @@
       letter-spacing: 0.05em;
       line-height: 1.6;
     }
+
+  @media (max-width: 768px) {
+    .contact-wrap { grid-template-columns: 1fr !important; }
+    .contact-info { padding: 3rem 1.5rem; border-right: none !important; border-bottom: 1px solid var(--border); }
+    .contact-form-wrap { padding: 3rem 1.5rem; }
+    .form-grid { grid-template-columns: 1fr !important; }
+    .contact-quote { margin-top: 2rem; padding-top: 2rem; }
+  }
   </style>
 </head>
 <body>
