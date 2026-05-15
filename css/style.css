@@ -887,4 +887,7 @@ footer {
   .portfolio-video-pair { flex-direction: column; width: 100%; }
   .portfolio-video-solo { width: 100%; }
   .portfolio-cta { padding: 4rem 1.5rem; flex-direction: column; }
+
+  /* ── HERO TITLE SIZE FIX ────────────────────────────────── */
+  .hero-title { font-size: clamp(2.5rem, 17vw, 11rem); }
 }
