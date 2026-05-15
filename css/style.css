@@ -232,6 +232,11 @@ nav.scrolled {
   color: var(--white);
 }
 
+.hero-title em {
+  font-style: normal;
+  color: var(--gold);
+}
+
 .hero-title-line         { display: block; overflow: hidden; }
 .hero-title-line span    { display: block; opacity: 0; transform: translateY(100%); }
 
@@ -310,7 +315,7 @@ nav.scrolled {
 }
 
 .scroll-hint span {
-  font-size: 0.5rem;
+  font-size: clamp(0.65rem, 0.7vw, 0.85rem);
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--muted);
@@ -673,7 +678,7 @@ footer {
 
 .footer-brand {
   font-family: 'Syncopate', sans-serif;
-  font-size: 0.7rem;
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   color: var(--muted);
@@ -684,14 +689,14 @@ footer {
 .footer-motto {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
   color: var(--muted);
 }
 
 .footer-links { display: flex; gap: 2rem; }
 
 .footer-links a {
-  font-size: 0.72rem;
+  font-size: clamp(0.72rem, 0.8vw, 0.95rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -700,6 +705,7 @@ footer {
 }
 
 .footer-links a:hover { color: var(--gold); }
+
 
 /* ── KEYFRAMES ──────────────────────────────────────────── */
 @keyframes slideUp {
