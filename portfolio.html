@@ -73,6 +73,41 @@
 
     .page-header-count span { color: var(--gold); }
 
+    /* ── FILTER BAR ───────────────────────────────────────── */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter-btn {
+      padding: 0.7rem 2.2rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(0.72rem, 0.8vw, 0.92rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      margin-left: -1px;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s, background 0.3s;
+    }
+
+    .filter-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+    .filter-btn.active {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hidden state for filtering */
+    [data-section].hidden { display: none; }
+
     /* ── MASONRY GRID ─────────────────────────────────────── */
     .portfolio-grid {
       padding: 3px;
@@ -381,10 +416,17 @@
     <p class="page-header-count"><span>25</span> obras seleccionadas</p>
   </div>
 
+  <!-- ═══ FILTER BAR ═════════════════════════════════════════ -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all"    onclick="filterPortfolio('all')">Tudo</button>
+    <button class="filter-btn"        data-filter="photo"  onclick="filterPortfolio('photo')">Fotografia</button>
+    <button class="filter-btn"        data-filter="video"  onclick="filterPortfolio('video')">Vídeo</button>
+  </div>
+
   <!-- ═══ CONTENT ════════════════════════════════════════════ -->
 
-  <!-- Hero video — top of page, centered, with sound -->
-  <div class="portfolio-video-row" style="padding-top: 1.5rem;">
+  <!-- Hero video -->
+  <div class="portfolio-video-row" data-section="video" style="padding-top:1.5rem">
     <div class="portfolio-video-solo">
       <div class="portfolio-video-wrap">
         <iframe id="vid1" src="https://www.youtube.com/embed/cPRQYKli5_0?autoplay=1&mute=1&loop=1&playlist=cPRQYKli5_0&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
@@ -399,7 +441,7 @@
   </div>
 
   <!-- Photo group 1 -->
-  <div class="portfolio-grid">
+  <div class="portfolio-grid" data-section="photo">
     <div class="portfolio-item" data-index="0" data-type="photo">
       <img src="assets/portfolio/p04-football.jpg" alt="Drone — campo de futebol na ilha">
       <div class="portfolio-item-overlay"></div>
@@ -437,8 +479,8 @@
     </div>
   </div>
 
-  <!-- Motorcycle video — centered, with sound -->
-  <div class="portfolio-video-row">
+  <!-- Motorcycle video -->
+  <div class="portfolio-video-row" data-section="video">
     <div class="portfolio-video-solo">
       <div class="portfolio-video-wrap">
         <iframe id="vid2" src="https://www.youtube.com/embed/bvFvyeoT_Ko?autoplay=1&mute=1&loop=1&playlist=bvFvyeoT_Ko&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
@@ -452,8 +494,23 @@
     </button>
   </div>
 
+  <!-- Norway travel video -->
+  <div class="portfolio-video-row" data-section="video">
+    <div class="portfolio-video-solo">
+      <div class="portfolio-video-wrap">
+        <iframe id="vid7" src="https://www.youtube.com/embed/NWD3SiVhktM?autoplay=1&mute=1&loop=1&playlist=NWD3SiVhktM&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <div class="video-block-overlay"></div>
+      </div>
+    </div>
+    <button class="mute-btn" onclick="toggleMute(this)">
+      <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      <svg class="icon-sound" width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+      <span>Som</span>
+    </button>
+  </div>
+
   <!-- Photo group 2 -->
-  <div class="portfolio-grid">
+  <div class="portfolio-grid" data-section="photo">
     <div class="portfolio-item" data-index="7" data-type="photo">
       <img src="assets/portfolio/p06-crater.jpg" alt="Aérea — cratera ao pôr do sol">
       <div class="portfolio-item-overlay"></div>
@@ -491,8 +548,8 @@
     </div>
   </div>
 
-  <!-- Nature pair — side by side, no sound control -->
-  <div class="portfolio-video-row">
+  <!-- Nature pair — side by side, no sound -->
+  <div class="portfolio-video-row" data-section="video">
     <div class="portfolio-video-pair">
       <div class="portfolio-video-wrap">
         <iframe id="vid3" src="https://www.youtube.com/embed/6uSS3J1uZs4?autoplay=1&mute=1&loop=1&playlist=6uSS3J1uZs4&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
@@ -505,8 +562,8 @@
     </div>
   </div>
 
-  <!-- Timelapse — centered, no sound control -->
-  <div class="portfolio-video-row" style="padding-bottom: 1.5rem;">
+  <!-- Timelapse — centered, no sound -->
+  <div class="portfolio-video-row" data-section="video">
     <div class="portfolio-video-solo">
       <div class="portfolio-video-wrap">
         <iframe id="vid5" src="https://www.youtube.com/embed/AOnEXqkD0AI?autoplay=1&mute=1&loop=1&playlist=AOnEXqkD0AI&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
@@ -516,7 +573,7 @@
   </div>
 
   <!-- Photo group 3 -->
-  <div class="portfolio-grid">
+  <div class="portfolio-grid" data-section="photo">
     <div class="portfolio-item" data-index="14" data-type="photo">
       <img src="assets/portfolio/p14-hammock.jpg" alt="Fotografia — paisagem rural Açoriana">
       <div class="portfolio-item-overlay"></div>
@@ -565,7 +622,7 @@
   </div>
 
   <!-- Car video — centered, with sound -->
-  <div class="portfolio-video-row" style="padding-bottom: 1.5rem;">
+  <div class="portfolio-video-row" data-section="video" style="padding-bottom:1.5rem">
     <div class="portfolio-video-solo">
       <div class="portfolio-video-wrap">
         <iframe id="vid6" src="https://www.youtube.com/embed/hxZYyA9-07I?autoplay=1&mute=1&loop=1&playlist=hxZYyA9-07I&controls=0&rel=0&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
@@ -579,7 +636,6 @@
     </button>
   </div>
 
-  <!-- ═══ LIGHTBOX ══════════════════════════════════════════ -->
   <div class="lightbox" id="lightbox">
     <div class="lightbox-close" id="lbClose">
       <svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
@@ -628,14 +684,26 @@
     document.head.appendChild(tag);
 
     function onYouTubeIframeAPIReady() {
-      ['vid1','vid2','vid6'].forEach(function(id) {
+      ['vid1','vid2','vid6','vid7'].forEach(function(id) {
         var el = document.getElementById(id);
         if (!el) return;
         players[id] = new YT.Player(id, {
-          events: {
-            onReady: function(e) { e.target.playVideo(); }
-          }
+          events: { onReady: function(e) { e.target.playVideo(); } }
         });
+      });
+    }
+
+    // ── FILTER ───────────────────────────────────────────────
+    function filterPortfolio(type) {
+      document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.filter === type);
+      });
+      document.querySelectorAll('[data-section]').forEach(function(el) {
+        if (type === 'all') {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.toggle('hidden', el.dataset.section !== type);
+        }
       });
     }
 
