@@ -140,7 +140,41 @@
 
     .portfolio-item-expand svg { stroke: var(--gold); fill: none; }
 
-    /* ── VIDEO ITEMS ──────────────────────────────────────── */
+    /* ── VIDEO ROWS ───────────────────────────────────────── */
+    .portfolio-video-row {
+      padding: 3px 0;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .portfolio-video-wrap {
+      position: relative;
+      width: 65%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .portfolio-video-wrap iframe {
+      position: absolute;
+      top: -8%;
+      left: 0;
+      width: 100%;
+      height: 116%;
+      display: block;
+      border: none;
+    }
+
+    .video-block-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      cursor: default;
+    }
+
+    /* ── VIDEO ITEMS (kept for lightbox compatibility) ────── */
     .portfolio-item.is-video .play-btn {
       position: absolute;
       top: 50%; left: 50%;
@@ -313,7 +347,149 @@
   </div>
 
   <!-- ═══ MASONRY GRID ══════════════════════════════════════ -->
-  <div class="portfolio-grid" id="portfolioGrid">
+
+  <!-- Photo group 1 -->
+  <div class="portfolio-grid">
+    <div class="portfolio-item" data-index="0" data-type="photo">
+      <img src="assets/portfolio/p04-football.jpg" alt="Drone — campo de futebol na ilha">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="1" data-type="photo">
+      <img src="assets/portfolio/p03-vineyard.jpg" alt="Aérea — vinhas do Pico">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="2" data-type="photo">
+      <img src="assets/portfolio/p07-night.jpg" alt="FPV noturno — light painting com mota">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="3" data-type="photo">
+      <img src="assets/portfolio/p05-lagoa.jpg" alt="Aérea — Sete Cidades">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="4" data-type="photo">
+      <img src="assets/portfolio/p11-tea.jpg" alt="Aérea — Chá Gorreana">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="5" data-type="photo">
+      <img src="assets/portfolio/p10-coast.jpg" alt="Aérea — Costa dos Açores">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="6" data-type="photo">
+      <img src="assets/portfolio/p15-island.jpg" alt="Do cockpit — vista aérea de ilha">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+  </div>
+
+  <!-- Video break 1 -->
+  <div class="portfolio-video-row">
+    <div class="portfolio-video-wrap">
+      <iframe src="https://www.youtube.com/embed/cPRQYKli5_0?autoplay=1&mute=1&loop=1&playlist=cPRQYKli5_0&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+      <div class="video-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- Photo group 2 -->
+  <div class="portfolio-grid">
+    <div class="portfolio-item" data-index="7" data-type="photo">
+      <img src="assets/portfolio/p06-crater.jpg" alt="Aérea — cratera ao pôr do sol">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="8" data-type="photo">
+      <img src="assets/portfolio/p13-corvo.jpg" alt="Fotografia — Caldeirão do Corvo">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="9" data-type="photo">
+      <img src="assets/portfolio/p01-architecture.jpg" alt="Fotografia — arquitectura Açoriana">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="10" data-type="photo">
+      <img src="assets/portfolio/p09-q400.jpg" alt="Vídeo — Q400 SATA Air Açores">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="11" data-type="photo">
+      <img src="assets/portfolio/p02-lighthouse.jpg" alt="Fotografia — Farol do Faial">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="12" data-type="photo">
+      <img src="assets/portfolio/p17-van.jpg" alt="Aérea — drone sobre a Lagoa">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="13" data-type="photo">
+      <img src="assets/portfolio/p12-hotel.jpg" alt="Fotografia — interior hoteleiro">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="14" data-type="photo">
+      <img src="assets/portfolio/p16-car.jpg" alt="Vídeo — automóvel em movimento">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+  </div>
+
+  <!-- Video break 2 -->
+  <div class="portfolio-video-row">
+    <div class="portfolio-video-wrap">
+      <iframe src="https://www.youtube.com/embed/hxZYyA9-07I?autoplay=1&mute=1&loop=1&playlist=hxZYyA9-07I&controls=0&rel=0&modestbranding=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+      <div class="video-block-overlay"></div>
+    </div>
+  </div>
+
+  <!-- Photo group 3 -->
+  <div class="portfolio-grid">
+    <div class="portfolio-item" data-index="15" data-type="photo">
+      <img src="assets/portfolio/p14-hammock.jpg" alt="Fotografia — paisagem rural Açoriana">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="16" data-type="photo">
+      <img src="assets/portfolio/p08-construction.jpg" alt="Timelapse — obra em Ponta Delgada">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="17" data-type="photo">
+      <img src="assets/portfolio/p18-construction2.jpg" alt="Timelapse — vista aérea de obra">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="18" data-type="photo">
+      <img src="assets/portfolio/p19-hotel-detail.jpg" alt="Fotografia — detalhe hoteleiro">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="19" data-type="photo">
+      <img src="assets/portfolio/p20-mountain-reflection.jpg" alt="Fotografia — reflexo nas montanhas">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="20" data-type="photo">
+      <img src="assets/portfolio/p21-takeoff-sunset.jpg" alt="Fotografia — descolagem ao pôr do sol">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="21" data-type="photo">
+      <img src="assets/portfolio/p22-q400-detail.jpg" alt="Fotografia — detalhe Q400 SATA">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+    <div class="portfolio-item" data-index="22" data-type="photo">
+      <img src="assets/portfolio/p23-cockpit.jpg" alt="Fotografia — instrumentos de cockpit">
+      <div class="portfolio-item-overlay"></div>
+      <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
+    </div>
+  </div>
 
     <!-- Col 1 starts -->
     <div class="portfolio-item" data-index="0" data-type="photo">
@@ -465,8 +641,6 @@
       <div class="portfolio-item-overlay"></div>
       <div class="portfolio-item-expand"><svg width="14" height="14" viewBox="0 0 14 14" stroke-width="1.5"><path d="M5 2H2v3M9 2h3v3M5 12H2V9M9 12h3V9"/></svg></div>
     </div>
-
-  </div>
 
   <!-- ═══ LIGHTBOX ══════════════════════════════════════════ -->
   <div class="lightbox" id="lightbox">
