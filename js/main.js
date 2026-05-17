@@ -111,3 +111,34 @@ if (hamburger && navLinks) {
     });
   });
 }
+
+
+// ── COOKIE BANNER ────────────────────────────────────────────
+(function() {
+  if (localStorage.getItem('cookieConsent')) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'cookie-banner';
+  banner.innerHTML = `
+    <p class="cookie-banner-text">
+      Este site utiliza cookies para melhorar a sua experiência e analisar o tráfego.
+      Os vídeos incorporados utilizam o modo de privacidade do YouTube.
+      Saiba mais na nossa <a href="cookies.html">Política de Cookies</a>.
+    </p>
+    <div class="cookie-banner-actions">
+      <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Recusar</button>
+      <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Aceitar</button>
+    </div>
+  `;
+
+  document.body.appendChild(banner);
+
+  function dismiss(choice) {
+    localStorage.setItem('cookieConsent', choice);
+    banner.classList.add('hidden');
+    setTimeout(() => banner.remove(), 500);
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', () => dismiss('accepted'));
+  document.getElementById('cookieDecline').addEventListener('click', () => dismiss('declined'));
+})();
