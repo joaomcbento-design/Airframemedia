@@ -65,11 +65,27 @@
     .portfolio-cta{padding:8rem 3.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
     .portfolio-cta h2{font-family:'Syncopate',sans-serif;font-size:clamp(1.8rem,4vw,4rem);font-weight:700;line-height:1.05;max-width:16ch}
     .portfolio-cta h2 em{font-style:normal;color:var(--gold)}
-    .lang-toggle{display:flex;align-items:center;gap:.35rem;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:1.5rem}
-    .lang-toggle a{color:var(--muted);text-decoration:none;transition:color .2s}
-    .lang-toggle a:hover{color:var(--gold)}
-    .lang-toggle a.active{color:var(--warm-white);pointer-events:none}
-    .lang-toggle .sep{color:var(--border)}
+        .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: 1.5rem;
+    }
+    .lang-toggle a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--border);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .lang-toggle a:hover { color: var(--gold); border-color: var(--gold); }
+    .lang-toggle a.active { background: var(--gold); color: var(--bg); border-color: var(--gold); pointer-events: none; }
+    .lang-toggle .sep { display: none; }
     @media(max-width:768px){.portfolio-grid{columns:2!important;column-gap:2px;padding:2px}.portfolio-video-pair{flex-direction:column!important;width:100%!important}.portfolio-video-solo{width:100%!important}.filter-bar{padding:1.5rem 1rem}.filter-btn{padding:.6rem 1rem;font-size:.7rem}.portfolio-cta{padding:4rem 1.5rem;flex-direction:column}}
   </style>
 </head>

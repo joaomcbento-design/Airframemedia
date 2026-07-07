@@ -37,11 +37,27 @@
     .legal-section ul li::before{content:'';position:absolute;left:0;top:.7em;width:4px;height:4px;background:var(--gold);border-radius:50%}
     .legal-section a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(196,162,74,.3);transition:border-color .3s}
     .legal-section a:hover{border-color:var(--gold)}
-    .lang-toggle{display:flex;align-items:center;gap:.35rem;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:1.5rem}
-    .lang-toggle a{color:var(--muted);text-decoration:none;transition:color .2s}
-    .lang-toggle a:hover{color:var(--gold)}
-    .lang-toggle a.active{color:var(--warm-white);pointer-events:none}
-    .lang-toggle .sep{color:var(--border)}
+        .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: 1.5rem;
+    }
+    .lang-toggle a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--border);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .lang-toggle a:hover { color: var(--gold); border-color: var(--gold); }
+    .lang-toggle a.active { background: var(--gold); color: var(--bg); border-color: var(--gold); pointer-events: none; }
+    .lang-toggle .sep { display: none; }
     @media(max-width:768px){.legal-wrap{padding:7rem 1.5rem 4rem}}
   </style>
 </head>
