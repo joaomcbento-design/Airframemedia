@@ -216,6 +216,18 @@
     var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
     function onYouTubeIframeAPIReady(){['vid1','vid2','vid6','vid7'].forEach(function(id){var el=document.getElementById(id);if(!el)return;players[id]=new YT.Player(id,{events:{onReady:function(e){e.target.playVideo();}}});});}
     function filterPortfolio(type){document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter===type);});document.querySelectorAll('[data-section]').forEach(function(el){if(type==='all'){el.classList.remove('hidden');}else{el.classList.toggle('hidden',el.dataset.section!==type);}});}
+    (function(){
+      var slugs={fotografia:'photo',photography:'photo',video:'video',timelapse:'timelapse',gastronomia:'food',food:'food'};
+      var names={pt:{photo:'fotografia',video:'video',timelapse:'timelapse',food:'gastronomia'},en:{photo:'photography',video:'video',timelapse:'timelapse',food:'food'}};
+      var lang=document.documentElement.lang&&document.documentElement.lang.indexOf('en')===0?'en':'pt';
+      var other=lang==='pt'?'en':'pt';
+      var langLink=document.querySelector('a[href="en/portfolio.html"]');
+      function apply(){var t=slugs[decodeURIComponent(location.hash.slice(1)).toLowerCase()]||'all';filterPortfolio(t);if(langLink){langLink.setAttribute('href','en/portfolio.html'+(t==='all'?'':'#'+names[other][t]));}}
+      var base=filterPortfolio;
+      filterPortfolio=function(type){base(type);var h=type==='all'?'':'#'+names[lang][type];if(location.hash!==h){history.replaceState(null,'',location.pathname+location.search+h);}if(langLink){langLink.setAttribute('href','en/portfolio.html'+(type==='all'?'':'#'+names[other][type]));}};
+      window.addEventListener('hashchange',apply);
+      if(location.hash){apply();}
+    })();
     function toggleMute(btn){const row=btn.closest('.portfolio-video-row');const frames=row.querySelectorAll('iframe');const unmute=!btn.classList.contains('active');frames.forEach(function(iframe){var p=players[iframe.id];if(!p)return;unmute?p.unMute():p.mute();});btn.classList.toggle('active');btn.querySelector('.icon-muted').style.display=unmute?'none':'block';btn.querySelector('.icon-sound').style.display=unmute?'block':'none';}
     const lb=document.getElementById('lightbox'),lbInner=document.getElementById('lbInner'),lbClose=document.getElementById('lbClose'),lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext'),lbCounter=document.getElementById('lbCounter');
     const items=Array.from(document.querySelectorAll('.portfolio-item'));let current=0;
