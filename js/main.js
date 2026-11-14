@@ -70,18 +70,135 @@ const lineObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.divider-line').forEach(el => lineObs.observe(el));
 
 
-/* ── HERO PARALLAX ──────────────────────────────────────── */
-// The hero background image moves slightly slower than the scroll
-const heroBg = document.querySelector('.hero-bg');
+/* ── SCROLL ANIMATIONS ─────────────────────────────────── */
+// All scroll effects live here. They are added from JS so every page
+// gets them without changing the HTML. Users who ask their OS for
+// reduced motion get the content straight away, with no movement.
+(function scrollAnimations() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js-anim');
 
-if (heroBg) {
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y < window.innerHeight) {
-      heroBg.style.transform = `scale(1.02) translateY(${y * 0.25}px)`;
+  /* 1. Staggered grids — children appear one after another */
+  const staggerSel = '.services-grid, .pillars-grid, .tl-features-grid, .tl-specs, .stats-section';
+  document.querySelectorAll(staggerSel).forEach(grid => {
+    grid.classList.remove('reveal');
+    grid.style.transitionDelay = '';
+    grid.classList.add('stagger');
+    Array.from(grid.children).forEach((child, i) => {
+      child.style.setProperty('--i', i);
+      child.classList.add(child.classList.contains('scard') ? 'stagger-clip' : 'stagger-item');
+    });
+  });
+
+  /* 2. Image curtain — images unveil from bottom to top */
+  document.querySelectorAll('.service-img, .tl-video-wrap').forEach(el => el.classList.add('img-reveal'));
+
+  /* 3. Portfolio — each photo fades in as it arrives */
+  document.querySelectorAll('.portfolio-item').forEach((el, i) => {
+    el.classList.add('pf-reveal');
+    el.style.setProperty('--i', i % 3);
+  });
+
+  const inObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      (entry.target._revealTargets || [entry.target]).forEach(t => t.classList.add('in'));
+      inObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.stagger, .pf-reveal').forEach(el => inObs.observe(el));
+  // A fully clipped element never counts as visible, so watch its parent instead
+  document.querySelectorAll('.img-reveal').forEach(el => {
+    const parent = el.parentElement;
+    (parent._revealTargets = parent._revealTargets || []).push(el);
+    inObs.observe(parent);
+  });
+
+  /* 4. Number counters — "100+" counts up from 0 */
+  const counters = document.querySelectorAll('.stat-num, .tl-spec-value');
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      countObs.unobserve(entry.target);
+      const el = entry.target;
+      const match = el.textContent.trim().match(/^(\d+)(\D*)$/);
+      if (!match || +match[1] === 0) return;
+      const target = +match[1], suffix = match[2], duration = 1800;
+      const start = performance.now();
+      (function tick(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 4);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      })(start);
+    });
+  }, { threshold: 0.6 });
+
+  if (!reduceMotion) counters.forEach(el => countObs.observe(el));
+
+  if (reduceMotion) return;
+
+  /* 5. Scroll-linked effects (progress bar, hero, parallax, quote) */
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.appendChild(bar);
+
+  const heroMedia   = document.querySelectorAll('.hero-video, .hero-bg');
+  const heroContent = document.querySelector('.hero-content, .tl-hero-content');
+  const hint        = document.querySelector('.scroll-hint');
+  const parallaxImgs = document.querySelectorAll('.scard-img');
+  const quote    = document.querySelector('.quote-section');
+  const quoteMain = quote && quote.querySelector('.quote-main');
+  const quoteSub  = quote && quote.querySelector('.quote-sub');
+
+  // 0 when the element's top hits the bottom of the screen, 1 when its bottom leaves the top
+  function progress(el) {
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight;
+    return Math.min(Math.max((vh - r.top) / (vh + r.height), 0), 1);
+  }
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const y  = window.scrollY;
+    const vh = window.innerHeight;
+    const max = document.documentElement.scrollHeight - vh;
+    bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+
+    if (y < vh * 1.2) {
+      heroMedia.forEach(m => { m.style.translate = `0 ${y * 0.3}px`; });
+      if (heroContent) {
+        const f = Math.min(y / (vh * 0.7), 1);
+        heroContent.style.translate = `0 ${y * -0.15}px`;
+        heroContent.style.opacity = 1 - f;
+      }
+      if (hint) hint.style.opacity = y > 40 ? 0 : '';
     }
+
+    parallaxImgs.forEach(img => {
+      const p = progress(img.parentElement);
+      if (p > 0 && p < 1) img.style.translate = `0 ${(p - 0.5) * -8}%`;
+    });
+
+    if (quote) {
+      const p = progress(quote);
+      const k = 1 - Math.min(p / 0.55, 1);           // 1 → 0 as the quote reaches mid-screen
+      if (quoteMain) quoteMain.style.translate = `${k * -12}vw 0`;
+      if (quoteSub) {
+        quoteSub.style.translate = `${k * 12}vw 0`;
+        quoteSub.style.letterSpacing = `${0.6 + k * 0.8}em`;
+      }
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
   }, { passive: true });
-}
+  window.addEventListener('resize', update);
+  update();
+})();
 
 
 // ── MOBILE HAMBURGER NAV ─────────────────────────────────────
