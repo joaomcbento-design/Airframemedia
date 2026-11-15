@@ -78,6 +78,50 @@ document.querySelectorAll('.divider-line').forEach(el => lineObs.observe(el));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('js-anim');
 
+  /* 0. Scroll-scrubbed pieces — they slide in from different sides,
+        following the scroll in both directions.
+        x = vw, y = px, r = degrees of rotation at the start. */
+  const L = { x: -22 }, R = { x: 22 }, B = { y: 140 };
+  const scrubRules = [
+    // Home
+    ['.services-head > div',  () => ({ x: -25 })],
+    ['.services-sub',         () => ({ x: 25 })],
+    ['.scard',                i => i % 2 ? { x: 18, y: 80, r: 4 } : { x: -18, y: 80, r: -4 }],
+    ['.stat-item',            i => [L, B, R][i % 3]],
+    ['.cta-left',             () => ({ x: -20 })],
+    ['.cta-section > .btn',   () => ({ x: 20 })],
+    // Services page: image and text come from opposite sides
+    ['.service-block .service-img',     (i, el) => el.closest('.reverse') ? R : L],
+    ['.service-block .service-content', (i, el) => el.closest('.reverse') ? L : R],
+    // About page
+    ['.bio-photo',            () => L],
+    ['.bio-text',             () => R],
+    ['.pillars-head',         () => ({ x: -15 })],
+    ['.pillar',               i => [L, B, R][i % 3]],
+    // Timelapse page
+    ['.tl-spec',              i => [{ x: -18 }, { y: 160 }, { y: 160 }, { x: 18 }][i % 4]],
+    ['.tl-features-head',     () => ({ x: -15 })],
+    ['.tl-feature',           i => i % 2 ? { x: 15, r: 3 } : { x: -15, r: -3 }],
+    ['.tl-step',              i => ({ y: 100 + i * 70 })],
+    // Contact page
+    ['.contact-info',         () => L],
+    ['.contact-form-wrap',    () => R],
+  ];
+
+  const scrubEls = [];
+  if (!reduceMotion) {
+    scrubRules.forEach(([sel, from]) => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el._from = { x: 0, y: 0, r: 0, ...from(i, el) };
+        el.classList.add('scrub');
+        el.classList.remove('reveal');
+        const wrap = el.parentElement && el.parentElement.closest('.reveal');
+        if (wrap) wrap.classList.add('in');   // let the piece itself do the moving
+        scrubEls.push(el);
+      });
+    });
+  }
+
   /* 1. Staggered grids — children appear one after another */
   const staggerSel = '.services-grid, .pillars-grid, .tl-features-grid, .tl-specs, .stats-section';
   document.querySelectorAll(staggerSel).forEach(grid => {
@@ -86,6 +130,7 @@ document.querySelectorAll('.divider-line').forEach(el => lineObs.observe(el));
     grid.classList.add('stagger');
     Array.from(grid.children).forEach((child, i) => {
       child.style.setProperty('--i', i);
+      if (child.classList.contains('scrub') && !child.classList.contains('scard')) return;
       child.classList.add(child.classList.contains('scard') ? 'stagger-clip' : 'stagger-item');
     });
   });
@@ -160,7 +205,7 @@ document.querySelectorAll('.divider-line').forEach(el => lineObs.observe(el));
   }
 
   let ticking = false;
-  function update() {
+  let update = function () {
     ticking = false;
     const y  = window.scrollY;
     const vh = window.innerHeight;
@@ -193,11 +238,51 @@ document.querySelectorAll('.divider-line').forEach(el => lineObs.observe(el));
     }
   }
 
+  /* Scrubbed pieces: positions are measured without the motion applied,
+     so moving an element never changes when it is considered "in view". */
+  function measure() {
+    scrubEls.forEach(el => { el.style.translate = 'none'; el.style.rotate = 'none'; });
+    const sy = window.scrollY;
+    scrubEls.forEach(el => { el._top = el.getBoundingClientRect().top + sy; });
+    update();
+  }
+
+  function updateScrub() {
+    const vh = window.innerHeight;
+    const sy = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - vh;
+    scrubEls.forEach(el => {
+      // 0 when the piece's top touches the bottom of the screen,
+      // 1 once it has climbed 60% of the screen height — or, near the
+      // end of the page, once the page can't scroll any further
+      const start = el._top - vh;
+      const end = Math.min(el._top - vh * 0.4, maxScroll);
+      const t = end <= start ? 1 : Math.min(Math.max((sy - start) / (end - start), 0), 1);
+      const k = Math.pow(1 - t, 3);                 // remaining distance, eased
+      const f = el._from;
+      el.style.translate = `${f.x * k}vw ${f.y * k}px`;
+      el.style.rotate = `${f.r * k}deg`;
+      if (!el.classList.contains('scard')) el.style.opacity = Math.min(1, 0.1 + t * 1.3);
+    });
+  }
+
+  const baseUpdate = update;
+  update = function () { baseUpdate(); updateScrub(); };
+
   window.addEventListener('scroll', () => {
     if (!ticking) { ticking = true; requestAnimationFrame(update); }
   }, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+
+  let measureQueued = false;
+  const queueMeasure = () => {
+    if (measureQueued) return;
+    measureQueued = true;
+    requestAnimationFrame(() => { measureQueued = false; measure(); });
+  };
+  window.addEventListener('resize', queueMeasure);
+  window.addEventListener('load', queueMeasure);
+  if ('ResizeObserver' in window) new ResizeObserver(queueMeasure).observe(document.body);
+  measure();
 })();
 
 
